@@ -7,9 +7,9 @@ Author- *Elvis*
 Source- [Kaggle](https://www.kaggle.com/datasets/elvis23/mental-health-conversational-data)
 
 # Install Libraries
-# Install TensorFlow
+Install TensorFlow
 >pip install tensorflow
-# Install Numpy
+Install Numpy
 >pip install numpy
-# Install NLTK
+Install NLTK
 >pip install --user -U nltk
