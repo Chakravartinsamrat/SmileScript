@@ -1,6 +1,15 @@
 3/17/24
 -Dataset Imported
 -Analyzed data
+-Caffein Addict at this point
+
+3/18/24
+-Trained Dataset
+-Very Sleepy RN
 
 3/19/24
--Trained Dataset
+-Neural Network Building
+-Running into Multiple Errors
+-Failed to Run on my machine
+-Multiprocessing Errors that I've Failed to fix
+-God Pls Help
