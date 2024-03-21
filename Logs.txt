@@ -13,3 +13,7 @@
 -Failed to Run on my machine
 -Multiprocessing Errors that I've Failed to fix
 -God Pls Help
+
+3/19/24
+-Fixed Matrix Multiplication issue
+-Ran into a new one
