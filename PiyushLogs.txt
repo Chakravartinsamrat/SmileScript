@@ -17,3 +17,6 @@
 3/19/24
 -Fixed Matrix Multiplication issue
 -Ran into a new one
+    -5:24 Pm Rayan Fixed the Cuda problem, Now runs on Cpu
+    -Now Model is Trained, Up and Ready
+    -A girl didn't understand my Joke, It's over for me :(
