@@ -52,12 +52,12 @@ if __name__ == '__main__':
     num_epochs = 1000
 
     dataset = ChatDataset(X_train, Y_train)
-    train_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True, num_workers=2)
+    train_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True)
 
 #I dont fully understand how neural net works and chat funcs as crossentrophyloss and more below
     
 
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cpu')
     model = NeuralNet(input_size, hidden_size, output_size).to(device)
 
     # Define loss and optimizer
