@@ -1,6 +1,6 @@
-3/17/24
--Dataset Imported
--Analyzed data
+Train the model
+add more in Intents
+It doesnt recognize inputs
 
-3/19/24
--Trained Dataset
+eg- Hey How you Doing
+SmileScript: Oh okay we're done for today then. See you later
