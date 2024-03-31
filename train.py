@@ -15,7 +15,9 @@ if __name__ == '__main__':
     all_words = []
     tags = []
     xy = []
+    #{what, why, where},{ques}
     ignore_letters = [',', '.', '?', '!']
+    #ADD in intents {sensible output}
 
     for intent in intents['intents']:
         tag = intent['tag']
@@ -28,7 +30,7 @@ if __name__ == '__main__':
     all_words = [stem(w) for w in all_words if w not in ignore_letters]
     all_words = sorted(set(all_words))
     tags = sorted(set(tags))
-
+#------
     # Train model
     X_train = []
     Y_train = []
@@ -45,6 +47,7 @@ if __name__ == '__main__':
 
     # Hyperparameters
     batch_size = 8
+    #---------
     hidden_size = 8
     output_size = len(tags)
     input_size = len(X_train[0])
@@ -54,7 +57,7 @@ if __name__ == '__main__':
     dataset = ChatDataset(X_train, Y_train)
     train_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True)
 
-#I dont fully understand how neural net works and chat funcs as crossentrophyloss and more below
+
     
 
     device = torch.device('cpu')
@@ -62,6 +65,7 @@ if __name__ == '__main__':
 
     # Define loss and optimizer
     criterion = nn.CrossEntropyLoss()
+    #-------
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     for epoch in range(num_epochs):
