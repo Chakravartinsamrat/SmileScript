@@ -342,7 +342,7 @@
     {"tag": "fact-36",
       "patterns": ["What are the effects of sleep on mental health?", "Importance of sleep for mental well-being"],
       "responses": ["Adequate sleep is essential for cognitive function, mood regulation, and overall mental health. Poor sleep quality or insufficient sleep can contribute to increased stress, irritability, and difficulty coping with daily challenges."]
-    }
+    },
     {"tag":"anxiety_signs",
          "patterns":["What are the signs of anxiety?"],
          "responses": ["Signs of anxiety include excessive worry, restlessness, difficulty concentrating, irritability, and physical symptoms like rapid heartbeat or sweating. Have you been experiencing any of these symptoms?"]
