@@ -1,6 +1,0 @@
-Train the model
-add more in Intents
-It doesnt recognize inputs
-
-eg- Hey How you Doing
-SmileScript: Oh okay we're done for today then. See you later
