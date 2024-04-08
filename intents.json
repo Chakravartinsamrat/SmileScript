@@ -411,6 +411,10 @@
     {"tag": "acknowledging_advice",
        "patterns": ["That's helpful", "Thanks for the advice"],
        "responses": ["You're welcome! If you need more advice or assistance, feel free to ask."]
+    },
+    {"tag":"gud_day",
+        "patterns":["My day was gud ","My day was fine"],
+        "responses":["That's great to hear!How can I assist you today"]
     }
     
     ]
