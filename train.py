@@ -11,15 +11,14 @@ from model import NeuralNet
 if __name__ == '__main__':
     with open('intents.json', 'r') as f:
         intents = json.load(f)
-#loading the intents json file
-#building vocalbulary
+
     all_words = [] #all stemmed words are collected to this array
     tags = []       #all unique tags are collected to tags
     xy = []         #xy is the pairing array
-
-#for eg: if an intent has patterttns "what are you? what can you do? and the tag is greeting the xy list would contains like 
+    conversationa_history=[]
+    
+    #for eg: if an intent has patterttns "what are you? what can you do? and the tag is greeting the xy list would contains like 
 #[{what}{are}{you}, {greeting}]
-    ignore_letters = [',', '.', '?', '!']
 
     for intent in intents['intents']:
         tag = intent['tag']  #extracts the tag associated with it, this tag as label for intent category
@@ -29,12 +28,11 @@ if __name__ == '__main__':
             all_words.extend(w)                 #all words list is extended with the tokens extracted from current pattern
             xy.append((w, tag))                    #appends like this [{what}{are}{you}, {greeting}]
 
-    all_words = [stem(w) for w in all_words if w not in ignore_letters]
+    all_words = [stem(w) for w in all_words]
     #filters out any words that are present in the ignore letters list, reducing size and generalizing model
     all_words = sorted(set(all_words))
     #removes duplication and sorts alphabetically
     tags = sorted(set(tags))
-    #sorts and removes duplicate tags
 
     # Train model
     X_train = []
@@ -56,8 +54,12 @@ if __name__ == '__main__':
 
 
     # Hyperparameters
-    batch_size = 8  #number of samples per batch duriong trianing
-    hidden_size = 8 #numbe rof units in hidden layer
+    batch_size = 8 #number of samples per batch duriong trianing
+    hidden_size = 16 #numbe rof units in hidden layer
+
+    #batch size 8 and Hidden 16 is giving the most accurate outputs
+
+    
     output_size = len(tags)  #number of outputs, detrmined by tags
     input_size = len(X_train[0])        #size of input, determined by bag of words
     learning_rate = 0.001               #learning rate for optimization algorithm
@@ -109,7 +111,6 @@ if __name__ == '__main__':
     print(f'Final Loss: {loss.item():.4f}')
 
 
-
 #Now the trainning data is saved to Data.pth, IT IS ALSO CALLED A DICTIONARY
 data={
     "model_state":model.state_dict(),
@@ -117,7 +118,8 @@ data={
     "output_size": output_size,
     "hidden_size":hidden_size,
     "all_words":all_words,
-    "tags":tags
+    "tags":tags,
+
 
 }
 
@@ -125,3 +127,5 @@ FILE ="data.pth"
 torch.save(data,FILE)
 
 print(f'training Complete. File Saved to {FILE}')
+
+ 

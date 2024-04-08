@@ -1,0 +1,20 @@
+
+Creating a chatbot that responds based on previous interactions, also known as context-aware or conversational chatbots, 
+involves keeping track of the conversation history and using that information to generate more relevant responses.
+Here's a general approach you can follow to implement this feature in your chatbot:
+
+Maintain Conversation History: 
+Store the conversation history, including both user inputs and bot responses. 
+You can keep track of this history in memory or in a database.
+
+Contextual Understanding: 
+Develop a mechanism to understand the context of the conversation. 
+This can involve analyzing the previous user inputs and bot responses to identify the current topic or context of the conversation.
+
+Response Generation: 
+Use the context of the conversation to generate more relevant responses. 
+This can involve techniques such as using the context to select the appropriate response template, incorporating information from previous interactions into the response, or generating responses using advanced natural language generation (NLG) techniques.
+
+Feedback Loop: 
+Allow the chatbot to learn and improve over time by incorporating user feedback. 
+This can involve techniques such as reinforcement learning or using feedback from users to update the chatbot's response generation models.
