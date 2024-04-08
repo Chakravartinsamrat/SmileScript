@@ -1,10 +1,10 @@
 {"intents": [
     {"tag": "greeting",
-     "patterns": ["Hi", "Hey", "Is anyone there?","Hi there", "Hello", "Hey there", "Howdy", "Hola", "Bonjour", "Konnichiwa", "Guten tag", "Ola"],
+     "patterns": ["Hi", "Hey", "Is anyone there?","Hi there", "Hello", "Hey there", "Howdy", "Hola", "Bonjour", "Konnichiwa", "Guten tag", "Ola","Namaste"],
      "responses": ["Hello there. Tell me how are you feeling today?", "Hi there. What brings you here today?", "Hi there. How are you feeling today?", "Great to see you. How do you feel currently?", "Hello there. Glad to see you're back. What's going on in your world right now?"]
     },
     {"tag": "morning",
-        "patterns": ["Good morning"],
+        "patterns": ["Good morning","gm"],
         "responses": ["Good morning. I hope you had a good night's sleep. How are you feeling today? "]
     },
     {"tag": "afternoon",
@@ -16,12 +16,12 @@
         "responses": ["Good evening. How has your day been?"]
     },
     {"tag": "night",
-        "patterns": ["Good night"],
-        "responses": ["Good night. Get some proper sleep", "Good night. Sweet dreams."]
+        "patterns": ["Good night","gn"],
+        "responses": ["Good night! Remember to take some time to relax and unwind before bed. Sweet dreams!"]
     },
     {"tag": "goodbye",
-     "patterns": ["Bye", "See you later", "Goodbye", "Au revoir", "Sayonara", "ok bye", "Bye then", "Fare thee well"],
-     "responses": ["See you later.", "Have a nice day.", "Bye! Come back again.", "I'll see you soon."]
+        "patterns": ["Bye", "See you later", "Goodbye", "Au revoir", "Sayonara", "ok bye", "Bye then", "Fare thee well"],
+        "responses": ["See you later!", "Take care and have a wonderful day!", "Goodbye! Come back again soon.", "Until we meet again, farewell!"]
     },
     {"tag": "thanks",
      "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks for the help", "Than you very much"],
@@ -399,8 +399,19 @@
     { "tag": "coping_with_loss",
         "patterns": ["I've lost someone close to me. How can I cope?", "How do I deal with the death of a loved one?"],
         "responses": ["I'm sorry for your loss. Coping with the death of a loved one is incredibly difficult. It's important to give yourself time to grieve and lean on your support system for comfort. Seeking professional help or joining a support group can also provide additional support during this challenging time."]
+    },
+    {"tag": "positive_feedback",
+        "patterns": ["You're doing great", "Great job!", "I'm impressed"],
+        "responses": ["Thank you for the positive feedback! I'm glad I could assist you."]
+     },
+    {"tag": "negative_feedback",
+        "patterns": ["You're not very helpful", "I'm not satisfied with your responses"],
+        "responses": ["I'm sorry to hear that you're not satisfied. Please let me know how I can improve and assist you better."]
+    },
+    {"tag": "acknowledging_advice",
+       "patterns": ["That's helpful", "Thanks for the advice"],
+       "responses": ["You're welcome! If you need more advice or assistance, feel free to ask."]
     }
-
     
     ]
 }
