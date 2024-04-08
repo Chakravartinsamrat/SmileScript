@@ -1,4 +1,4 @@
-{"intents": [
+,{"intents": [
     {"tag": "greeting",
      "patterns": ["Hi", "Hey", "Is anyone there?","Hi there", "Hello", "Hey there", "Howdy", "Hola", "Bonjour", "Konnichiwa", "Guten tag", "Ola"],
      "responses": ["Hello there. Tell me how are you feeling today?", "Hi there. What brings you here today?", "Hi there. How are you feeling today?", "Great to see you. How do you feel currently?", "Hello there. Glad to see you're back. What's going on in your world right now?"]
@@ -318,7 +318,15 @@
     {"tag": "fact-32",
         "patterns": ["What's the difference between sadness and depression?", "difference between sadness and depression"],
         "responses": ["Sadness is a normal reaction to a loss, disappointment, problems, or other difficult situations. Feeling sad from time to time is just another part of being human. In these cases, feelings of sadness go away quickly and you can go about your daily life. Other ways to talk about sadness might be feeling low, feeling down, or feeling blue.A person may say they are feeling depressed, but if it goes away on its own and doesn't impact life in a big way, it probably isn't the illness of depression. Depression is a mental illness that affects your mood, the way you understand yourself, and the way you understand and relate to things around you. It can also go by different names, such as clinical depression, major depressive disorder, or major depression. Depression can come up for no reason, and it lasts for a long time. It's much more than sadness or low mood. People who experience depression may feel worthless or hopeless. They may feel unreasonable guilty. Some people may experience depression as anger or irritability. It may be hard to concentrate or make decisions. Most people lose interest in things that they used to enjoy and may isolate themselves from others. There are also physical signs of depression, such as problems with sleep, appetite and energy and unexplainable aches or pains. Some may experience difficult thoughts about death or ending their life (suicide). Depression lasts longer than two weeks, doesn't usually go away on its own, and impacts your life. It's a real illness, and it is very treatable. It's important to seek help if you're concerned about depression."]
+    },{"tag":"anxiety_signs",
+         "patterns":["What are the signs of anxiety?"],
+         "responses": ["Signs of anxiety include excessive worry, restlessness, difficulty concentrating, irritability, and physical symptoms like rapid heartbeat or sweating. Have you been experiencing any of these symptoms?"]
+    },
+    {"tag": "untreated_mental_health_effects",
+       "patterns": ["What are the effects of long-term untreated mental health issues?"],
+       "responses": ["Untreated mental health issues can lead to various negative effects, including deterioration in overall well-being, increased risk of developing other physical health problems, difficulties in relationships and social interactions, decreased productivity, and in severe cases, higher risk of self-harm or suicide. It's important to seek professional help and support if you're struggling with mental health issues."]
     }
+
 
     ]
 }
