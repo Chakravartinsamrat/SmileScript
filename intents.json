@@ -350,6 +350,47 @@
     {"tag": "untreated_mental_health_effects",
        "patterns": ["What are the effects of long-term untreated mental health issues?"],
        "responses": ["Untreated mental health issues can lead to various negative effects, including deterioration in overall well-being, increased risk of developing other physical health problems, difficulties in relationships and social interactions, decreased productivity, and in severe cases, higher risk of self-harm or suicide. It's important to seek professional help and support if you're struggling with mental health issues."]
+    },
+    {"tag": "therapy_types",
+      "patterns": ["What are the different types of therapy?", "How do I choose the right therapy approach?"],
+      "responses": ["There are various types of therapy approaches, including cognitive-behavioral therapy (CBT), dialectical behavior therapy (DBT), psychodynamic therapy, interpersonal therapy, and mindfulness-based therapies. Choosing the right therapy approach depends on individual needs, preferences, and treatment goals."]
+    },
+    {"tag": "workplace_stress_management",
+      "patterns": ["How can I manage stress in the workplace?", "What are some stress management techniques?"],
+      "responses": ["Managing workplace stress involves prioritizing tasks, setting realistic expectations, taking breaks, practicing time management, communicating boundaries, seeking support from colleagues or supervisors, and engaging in stress-reducing activities outside of work."]
+    },
+     {
+      "tag": "provide_resources",
+      "patterns": ["Where can I find mental health resources?", "Do you have any resources for coping with stress?"],
+      "responses": ["There are many resources available, including helplines, online forums, and mental health apps. You can also visit this website for more information: https://www.amahahealth.com/ "],
+      "context": "provide_resource_links"
+    }
+    { "tag": "offer_encouragement",
+      "patterns": ["I'm feeling discouraged.", "I don't think I can do this."],
+      "responses": ["It's normal to feel discouraged at times, but remember that setbacks are a natural part of growth. You're stronger than you think, and I believe in you.", "You've overcome challenges before, and you can do it again. Take things one step at a time."]
+    },
+    {"tag": "provide_affirmation",
+      "patterns": ["I'm struggling to believe in myself.", "I feel like I'm not good enough."],
+      "responses": ["You are worthy of love and belonging just as you are.", "You are capable and deserving of success."]
+    },
+    {
+      "tag": "suggest_physical_activity",
+      "patterns": ["I'm feeling lethargic. What can I do to boost my energy?", "How can I increase my motivation to exercise?"],
+      "responses": ["Physical activity can help boost your energy levels and improve your mood. Even a short walk or stretching session can make a difference."]
+    },
+    {
+      "tag": "offer_distraction",
+      "patterns": ["I can't stop thinking about my problems.", "I need a distraction from my thoughts."],
+      "responses": ["Engaging in a hobby or activity you enjoy can provide a healthy distraction. What are some things you like to do for fun?"]
+    },
+     {"tag": "validate_struggle",
+      "patterns": ["I feel like I'm constantly fighting against my own mind.", "Why is everything so hard?"],
+      "responses": ["Struggling with mental health challenges can be exhausting, but it's important to remember that you're not alone. There is hope, and things can get better with time and support."]
+    },
+    {
+      "tag": "acknowledge_progress",
+      "patterns": ["I feel like I'm not making any progress.", "I keep slipping back into old habits."],
+      "responses": ["Recovery is not always linear, and setbacks are a normal part of the process. Celebrate the progress you've made, no matter how small."]
     }
     
     ]
