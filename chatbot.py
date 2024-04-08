@@ -33,13 +33,18 @@ model.eval()
 
 bot_name= "SmileScript"
 print("Let's Chat! type 'quit' to exit")
+conversation_history =[]
+
 while True:
-    sentence= input('You: ')
-    if sentence == "quit":
+    user_input= input('You: ')
+    if user_input == "quit":
         break
-    sentence=tokenize(sentence)
+
+    #add userinpu to converstion history
+    conversation_history.append(('user', user_input))
+    user_input=tokenize(user_input)
     #tokenize input
-    X= bag_of_words(sentence, all_words)
+    X= bag_of_words(user_input, all_words)
     X= X.reshape(1,X.shape[0])
     #reshape bagofwords vector to have a batch dimention of 1, bc the modelexpects input in batch format
     X= torch.from_numpy(X)
@@ -57,9 +62,23 @@ while True:
     #retrives the prob corresponding to the predicted class from softmax probabilities
 
     if prob.item() > 0.05 :
-        #if prob >0.75= confident
+        #confidence score 
         for intent in intents ["intents"]:
             if tag == intent["tag"]:
+                response = random.choice(intent['responses'])
                 print(f"{bot_name}: {random.choice(intent['responses'])}")
+
+                #add bot response to conversation history
+                conversation_history.append(('bot',response))
+
+                
     else:
         print(f"{bot_name}:I do not Understand...")
+
+    # Store conversation history in a JSON file
+conversation_history_file = "conversation_history.json"
+
+with open(conversation_history_file, 'w') as f:
+    json.dump(conversation_history, f)
+
+print(f"Conversation history saved to {conversation_history_file}")

@@ -20,6 +20,8 @@ def bag_of_words(tokenize_sentence,all_words):
     for idx, w in enumerate(all_words):
         if w in tokenize_sentence:
             bag[idx]=1.0
+
     #if the word is present in the tokenizes and stemmed sentence it sets the corresponding index int he bag array to 1.0
     return bag
 
+    

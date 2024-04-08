@@ -35,17 +35,21 @@
         "patterns": ["nothing much"],
         "responses": ["Oh I see. Do you want to talk about something?"]
     },
+    {"tag": "Bot-feeling",
+        "patterns": ["How are you?","How are You doing "],
+        "responses": ["I'm Doing good, Thanks for Asking :)"]
+    },
     {"tag": "about",
      "patterns": ["Who are you?", "What are you?", "Who you are?", "Tell me more about yourself.", "What is your name?", "What should I call you?", "What's your name?", "Tell me about yourself" ],
-     "responses": ["I'm Pandora, your Personal Therapeutic AI Assistant. How are you feeling today", "I'm Pandora, a Therapeutic AI Assitant designed to assist you. Tell me about yourself.", "I'm Pandora. I am a conversational agent designed to mimic a therapist. So how are you feeling today?", "You can call me Pandora.", "I'm Pandora!", "Call me Pandora"]
+     "responses": ["I'm SmileScript, your Personal Therapeutic AI Assistant. How are you feeling today", "I'm SmileScript, a Therapeutic AI Assitant designed to assist you. Tell me about yourself.", "I'm SmileScript. I am a conversational agent designed to mimic a therapist. So how are you feeling today?", "You can call me SmileScript.", "I'm SmileScript!", "Call me SmileScript"]
     },
     {"tag": "skill",
-        "patterns": ["What can you do?"],
+        "patterns": ["What can you do?","How can you help me"],
         "responses": ["I can provide general advice regarding anxiety and depression, answer questions related to mental health and make daily conversations. Do not consider me as a subsitute for an actual mental healthcare worker. Please seek help if you don't feel satisfied with me."]
     },
     {"tag": "creation",
         "patterns": ["Who created you?", "How were you made?", "How were you created?"],
-        "responses": ["I was created by >.", "I was trained on a text dataset using Deep Learning & Natural Language Processing techniques", "The real question is: Who created you?"]
+        "responses": ["I was created by Team SmileScript", "I was trained on a text dataset using Deep Learning & Natural Language Processing techniques", "The real question is: Who created you?"]
     },
     {"tag": "name",
         "patterns": ["My name is ", "I am name.", "I go by "],
@@ -56,7 +60,7 @@
     "responses": ["Sure. Tell me how can i assist you", "Tell me your problem so that i can assist you", "Yes, sure. How can I help you?"]
     },
     {"tag": "sad",
-    "patterns": ["I am feeling lonely", "I am so lonely", "I feel down", "I feel sad", "I am sad", "I feel so lonely", "I feel empty", "I don't have anyone"],
+    "patterns": ["I am feeling lonely", "I am so lonely", "I feel down", "I feel sad", "I am sad", "I feel so lonely", "I feel empty", "I don't have anyone","Im Sad","Not Good"],
     "responses": ["I'm sorry to hear that. I'm here for you. Talking about it might help. So, tell me why do you think you're feeling this way?", "I'm here for you. Could you tell me why you're feeling this way?", "Why do you think you feel this way?", "How long have you been feeling this way?"]
     },
     {"tag": "stressed",
@@ -186,6 +190,10 @@
     {"tag": "user-advice",
         "patterns": ["I want some advice.", "I need some advice.", "I need advice on something"],
         "responses": ["Sure. What can I do to help?", "Okay what do you need advice on?"]
+    },
+    {"tag":"Solution",
+        "patterns":["What should i do if I'm Feeling Depressed","What to do when one's feeling Depressed"],
+        "responses":["Seek a mental health professional, reach out to friends, find interest in hobbies, Try to build a positive mindset, Distract yourself from the negative thoughts that put you in this place. In the end it comes from within,I hope that made you feel better, if there's anything else I'm always here for you."]
     },
     {"tag": "learn-mental-health",
         "patterns": ["I want to learn about mental health.", "I want to learn more about mental health.", "I'm interested in learning about mental health."],
