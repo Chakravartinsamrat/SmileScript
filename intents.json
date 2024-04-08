@@ -359,12 +359,11 @@
       "patterns": ["How can I manage stress in the workplace?", "What are some stress management techniques?"],
       "responses": ["Managing workplace stress involves prioritizing tasks, setting realistic expectations, taking breaks, practicing time management, communicating boundaries, seeking support from colleagues or supervisors, and engaging in stress-reducing activities outside of work."]
     },
-     {
-      "tag": "provide_resources",
-      "patterns": ["Where can I find mental health resources?", "Do you have any resources for coping with stress?"],
-      "responses": ["There are many resources available, including helplines, online forums, and mental health apps. You can also visit this website for more information: https://www.amahahealth.com/ "],
-      "context": "provide_resource_links"
-    }
+     {"tag": "provide_resources",
+          "patterns": ["Where can I find mental health resources?", "Do you have any resources for coping with stress?"],
+          "responses": ["There are many resources available, including helplines, online forums, and mental health apps. You can also visit this website for more information: https://www.amahahealth.com/ "],
+          "context": "provide_resource_links"
+    },
     { "tag": "offer_encouragement",
       "patterns": ["I'm feeling discouraged.", "I don't think I can do this."],
       "responses": ["It's normal to feel discouraged at times, but remember that setbacks are a natural part of growth. You're stronger than you think, and I believe in you.", "You've overcome challenges before, and you can do it again. Take things one step at a time."]
@@ -373,25 +372,35 @@
       "patterns": ["I'm struggling to believe in myself.", "I feel like I'm not good enough."],
       "responses": ["You are worthy of love and belonging just as you are.", "You are capable and deserving of success."]
     },
-    {
-      "tag": "suggest_physical_activity",
+    {"tag": "suggest_physical_activity",
       "patterns": ["I'm feeling lethargic. What can I do to boost my energy?", "How can I increase my motivation to exercise?"],
       "responses": ["Physical activity can help boost your energy levels and improve your mood. Even a short walk or stretching session can make a difference."]
     },
-    {
-      "tag": "offer_distraction",
-      "patterns": ["I can't stop thinking about my problems.", "I need a distraction from my thoughts."],
-      "responses": ["Engaging in a hobby or activity you enjoy can provide a healthy distraction. What are some things you like to do for fun?"]
+    { "tag": "offer_distraction",
+        "patterns": ["I can't stop thinking about my problems.", "I need a distraction from my thoughts."],
+        "responses": ["Engaging in a hobby or activity you enjoy can provide a healthy distraction. What are some things you like to do for fun?"]
     },
      {"tag": "validate_struggle",
-      "patterns": ["I feel like I'm constantly fighting against my own mind.", "Why is everything so hard?"],
-      "responses": ["Struggling with mental health challenges can be exhausting, but it's important to remember that you're not alone. There is hope, and things can get better with time and support."]
+        "patterns": ["I feel like I'm constantly fighting against my own mind.", "Why is everything so hard?"],
+        "responses": ["Struggling with mental health challenges can be exhausting, but it's important to remember that you're not alone. There is hope, and things can get better with time and support."]
     },
-    {
-      "tag": "acknowledge_progress",
+    {"tag": "acknowledge_progress",
       "patterns": ["I feel like I'm not making any progress.", "I keep slipping back into old habits."],
       "responses": ["Recovery is not always linear, and setbacks are a normal part of the process. Celebrate the progress you've made, no matter how small."]
+    },
+    { "tag": "self_assessment",
+      "patterns": ["Am I feeling depressed?", "How can I tell if I have anxiety?"],
+      "responses": ["Self-assessment tools can help you gauge your mental health. You may want to consider taking a quiz or seeking professional advice for a more accurate evaluation."]
+    },
+    {"tag": "trauma_recovery",
+      "patterns": ["I've experienced trauma. How can I heal?", "What are some strategies for trauma recovery?"],
+      "responses": ["I'm sorry to hear that you've experienced trauma. Healing from trauma is a journey, and it's normal to feel overwhelmed. Remember, you're not alone in this. Therapy, support groups, and self-care practices are valuable tools that can support you on your path to healing. It's okay to take things one step at a time and be gentle with yourself as you navigate this process."]
+     },
+    { "tag": "coping_with_loss",
+        "patterns": ["I've lost someone close to me. How can I cope?", "How do I deal with the death of a loved one?"],
+        "responses": ["I'm sorry for your loss. Coping with the death of a loved one is incredibly difficult. It's important to give yourself time to grieve and lean on your support system for comfort. Seeking professional help or joining a support group can also provide additional support during this challenging time."]
     }
+
     
     ]
 }
