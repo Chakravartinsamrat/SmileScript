@@ -56,10 +56,7 @@ if __name__ == '__main__':
 
     # Hyperparameters
     batch_size = 8 #number of samples per batch duriong trianing
-    hidden_size = 8 #numbe rof units in hidden layer
-
-   
-
+    hidden_size = 16 #numbe rof units in hidden layer
     
     output_size = len(tags)  #number of outputs, detrmined by tags
     input_size = len(X_train[0])        #size of input, determined by bag of words
