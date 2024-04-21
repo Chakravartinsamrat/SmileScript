@@ -56,9 +56,9 @@ if __name__ == '__main__':
 
     # Hyperparameters
     batch_size = 8 #number of samples per batch duriong trianing
-    hidden_size = 16#numbe rof units in hidden layer
+    hidden_size = 8 #numbe rof units in hidden layer
 
-    #batch size 8 and Hidden 16 is giving the most accurate outputs
+   
 
     
     output_size = len(tags)  #number of outputs, detrmined by tags
