@@ -1,37 +1,38 @@
 import json
 import numpy as np
-from nltk_utils import tokenize, stem, bag_of_words
+from nltk_utils import tokenize, lemmatize, bag_of_words  # Change stem to lemmatize
 
 import torch
 import torch.nn as nn
 from chat_dataset import ChatDataset
 from torch.utils.data import Dataset, DataLoader
 from model import NeuralNet
+from nltk.stem import WordNetLemmatizer  # Import WordNetLemmatizer
 
 if __name__ == '__main__':
     with open('intents.json', 'r') as f:
         intents = json.load(f)
 
-    all_words = [] #all stemmed words are collected to this array
-    tags = []       #all unique tags are collected to tags
-    xy = []         #xy is the pairing array
-    conversationa_history=[]
+    all_words = []
+    tags = []
+    xy = []
+    ignore_letters = ['?', '!']
+    conversational_history = []
     
-    #for eg: if an intent has patterttns "what are you? what can you do? and the tag is greeting the xy list would contains like 
-#[{what}{are}{you}, {greeting}]
-
+    lemmatizer = WordNetLemmatizer()  # Initialize the lemmatizer
+    
     for intent in intents['intents']:
-        tag = intent['tag']  #extracts the tag associated with it, this tag as label for intent category
-        tags.append(tag)       #appends the extracted tag to the tags list
-        for pattern in intent['patterns']:      #this loop iterates over each patters associated with the current intent
-            w = tokenize(pattern)               #sentence to words
-            all_words.extend(w)                 #all words list is extended with the tokens extracted from current pattern
-            xy.append((w, tag))                    #appends like this [{what}{are}{you}, {greeting}]
+        tag = intent['tag']
+        tags.append(tag)
+        for pattern in intent['patterns']:
+            w = tokenize(pattern)
+            # Change stemming to lemmatization here
+            w = [lemmatizer.lemmatize(word) for word in w]  # Lemmatize each word
+            all_words.extend(w)
+            xy.append((w, tag))
 
-    all_words = [stem(w) for w in all_words]
-    #filters out any words that are present in the ignore letters list, reducing size and generalizing model
+    all_words = [lemmatizer.lemmatize(w) for w in all_words if w not in ignore_letters]  # Lemmatize again to ensure consistency
     all_words = sorted(set(all_words))
-    #removes duplication and sorts alphabetically
     tags = sorted(set(tags))
 
     # Train model
@@ -55,7 +56,7 @@ if __name__ == '__main__':
 
     # Hyperparameters
     batch_size = 8 #number of samples per batch duriong trianing
-    hidden_size = 16 #numbe rof units in hidden layer
+    hidden_size = 16#numbe rof units in hidden layer
 
     #batch size 8 and Hidden 16 is giving the most accurate outputs
 

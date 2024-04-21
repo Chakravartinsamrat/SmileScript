@@ -1,7 +1,0 @@
--Test With Different inputs, Not Common words
-
--Add in intents 
-
-- train again
-
-- repeat

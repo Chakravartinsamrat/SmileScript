@@ -1,1 +1,13 @@
-[["user", "Hi"], ["bot", "Hello there. Glad to see you're back. What's going on in your world right now?"], ["user", "How are you"], ["bot", "I'm Doing good, Thanks for Asking :)"], ["user", "glad to hear theat"], ["bot", "Sorry, I didn't understand you."], ["user", "I'm happy for you"], ["bot", "Did something happen which made you feel this way?"]]
+[["user", "HEY"], 
+["bot", "Hi there. How are you feeling today?"], 
+["user", "LETS GRAB A COFFEE"],
+["bot", "mental health is not a joke."], 
+["user", "Oh Okay"], ["bot", "How were you feeling last week?"],
+["user", "I've been feeling sad"],
+["bot", "Why do you think you feel this way?"],
+["user", "beacuse my Cat Died"], 
+["bot", "I'm sorry to hear that. If you want to talk about it. I'm here."], 
+["user", "She was my favourite"],
+["bot", "My pleasure"],
+["user", "not you"], 
+["bot", "That's no problem. I can see why you'd be stressed out about that. I can suggest you some tips to alleviate this issue. Would you like to learn more about that?"]]
