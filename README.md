@@ -15,6 +15,13 @@ Install Numpy
 >
 Install NLTK
 >pip install --user -U nltk
+>nltk.download('punkt')
 >
 Install Pytorch
 >pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+>
+Install Virtual Environment
+>pip install virtualenv
+>
+Install Flask Python
+>pip install flask 
