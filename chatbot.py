@@ -3,7 +3,7 @@
 
 import random
 import json
-import torch
+import torch 
 from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 
@@ -33,16 +33,10 @@ model.eval()
 
 bot_name= "SmileScript"
 print("Let's Chat! type 'quit' to exit")
-conversation_history =[]
 
-while True:
-    user_input= input('You: ')
-    if user_input == "quit":
-        break
 
-    #add userinpu to converstion history
-    conversation_history.append(('user', user_input))
-    user_input=tokenize(user_input)
+def get_response(msg):    
+    user_input=tokenize(msg)
     #tokenize input
     X= bag_of_words(user_input, all_words)
     X= X.reshape(1,X.shape[0])
@@ -68,17 +62,16 @@ while True:
                 response = random.choice(intent['responses'])
                 print(f"{bot_name}: {random.choice(intent['responses'])}")
 
-                #add bot response to conversation history
-                conversation_history.append(('bot',response))
 
-                
     else:
         print(f"{bot_name}:I do not Understand...")
 
-    # Store conversation history in a JSON file
-conversation_history_file = "conversation_history.json"
 
-with open(conversation_history_file, 'w') as f:
-    json.dump(conversation_history, f)
-
-print(f"Conversation history saved to {conversation_history_file}")
+    if __name__ == '__main__':
+        print("Let's chat! (type quit to exit)")
+        while True:
+            user_input = input("You: ")
+            if user_input == quit:
+                break
+            resp = get_response(user_input)
+            print(resp)

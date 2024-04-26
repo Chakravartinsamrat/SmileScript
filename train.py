@@ -16,7 +16,7 @@ if __name__ == '__main__':
     all_words = []
     tags = []
     xy = []
-    ignore_letters = ['?', '!']
+    ignore_letters = ["?","!","'",".","/",";"]
     conversational_history = []
     
     lemmatizer = WordNetLemmatizer()  # Initialize the lemmatizer
