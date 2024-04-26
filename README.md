@@ -10,6 +10,9 @@ Source- [Kaggle](https://www.kaggle.com/datasets/elvis23/mental-health-conversat
 Install TensorFlow
 >pip install tensorflow
 >
+Install Virtual Environment
+>pip install virtualenv
+>
 Install Numpy
 >pip install numpy
 >
@@ -19,9 +22,7 @@ Install NLTK
 >
 Install Pytorch
 >pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
->
-Install Virtual Environment
->pip install virtualenv
+
 >
 Install Flask Python
 >pip install flask 
