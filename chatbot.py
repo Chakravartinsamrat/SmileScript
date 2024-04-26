@@ -30,48 +30,34 @@ model.load_state_dict(model_state)
 model.eval()
 #eval= evalution mode
 
-
 bot_name= "SmileScript"
 print("Let's Chat! type 'quit' to exit")
+def get_response(msg):
+    sentence = msg
+    if sentence == "quit":
+        return None
+    sentence = tokenize(sentence)
+    X = bag_of_words(sentence, all_words)
+    X = X.reshape(1, X.shape[0])
+    X = torch.from_numpy(X)
 
-
-def get_response(msg):    
-    user_input=tokenize(msg)
-    #tokenize input
-    X= bag_of_words(user_input, all_words)
-    X= X.reshape(1,X.shape[0])
-    #reshape bagofwords vector to have a batch dimention of 1, bc the modelexpects input in batch format
-    X= torch.from_numpy(X)
-    #coverts into numoy array
-#model prediction
     output = model(X)
     _, predicted = torch.max(output, dim=1)
     tag = tags[predicted.item()]
-#extracts the index of class with highest prob from output predictions
-#retrives corresponmdiong tag(intent) 
 
-    probs= torch.softmax(output, dim=1)
-    #probability func, ensure prob<=1
-    prob= probs[0][predicted.item()]
-    #retrives the prob corresponding to the predicted class from softmax probabilities
+    probs = torch.softmax(output, dim=1)
+    prob = probs[0][predicted.item()]
 
-    if prob.item() > 0.05 :
-        #confidence score 
-        for intent in intents ["intents"]:
+    if prob.item() > 0.05:
+        for intent in intents["intents"]:
             if tag == intent["tag"]:
-                response = random.choice(intent['responses'])
-                print(f"{bot_name}: {random.choice(intent['responses'])}")
-
-
+                return f"{bot_name}: {random.choice(intent['responses'])}"
     else:
-        print(f"{bot_name}:I do not Understand...")
+        return f"{bot_name}: I do not Understand..."
 
-
-    if __name__ == '__main__':
-        print("Let's chat! (type quit to exit)")
-        while True:
-            user_input = input("You: ")
-            if user_input == quit:
-                break
-            resp = get_response(user_input)
-            print(resp)
+while True:
+    sentence = input('You: ')
+    resp = get_response(sentence)
+    if resp is None:
+        break
+    print(resp)

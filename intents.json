@@ -135,6 +135,11 @@
         "patterns": ["You already told me that", "You mentioned that already", "Why are you repeating yourself?"],
         "responses": ["Oh sorry I didn't realise that. I'll try not to repeat myself again."]
     },
+    {"tag":"appreciation",
+        "patterns": ["Glad to hear", "That's nice to hear", "Thank you very much","You're making me feel good", "You're a good chatbot"],
+        "responses": ["Happy to help! Let me know I can be more usefull to you", "You're Momma's Good Boy!"]
+
+    },
     {"tag": "wrong",
         "patterns": ["What are you saying?", "That doesn't make sense", "Wrong response", "Wrong answer"],
         "responses": ["I'm very sorry. Let's try that again"]
