@@ -13,8 +13,10 @@ Install TensorFlow
 # Create a Virtual Environment First 
 Install Virtual Environment
 >pip install virtualenv
+>
 Create Environment
 >python -m venv ./venv
+>
 Activate Environment
 
 cd >*venv_name*\Scripts> activate
