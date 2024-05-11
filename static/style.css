@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin-top: 100px;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #708090;
 }
 
 .container {
@@ -19,7 +19,7 @@ body {
     overflow-y: scroll;
     padding: 10px;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: #666868;
     margin-bottom: 20px;
 }
 
