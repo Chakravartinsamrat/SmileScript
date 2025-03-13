@@ -20,6 +20,8 @@ class NeuralNet(nn.Module):
         #4layers - input-hidden, output-hidden 
         self.l3 = nn.Linear(hidden_size, num_classes)  
         #final linear transformation
+        # self.dropout = nn.Dropout(0.3)
+        #drop out for overfitting
 
     def forward(self, x):
         #defines how the NN will pass the input to forward layers, takes input tensor x(x is a multidimensional array)
@@ -32,5 +34,6 @@ class NeuralNet(nn.Module):
         out = self.relu(out)  
         #again activation
         out = self.l3(out)
+        
         #passes the output of the second linear layer through the final layer
         return out

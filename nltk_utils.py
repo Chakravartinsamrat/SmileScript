@@ -10,7 +10,6 @@ def tokenize(sentence):
 # sentence to indivual words
 def lemmatize(word):
     return lemmatizer.lemmatize(word.lower())
-#defines func stem input words (converts to lower before stemmming)
 
 def bag_of_words(tokenized_sentence, all_words):
     tokenized_sentence = [lemmatize(w) for w in tokenized_sentence]

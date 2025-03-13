@@ -1,64 +1,149 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SmileScript</title>
-    <link rel="stylesheet" href="/static/style.css">
-
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>SmileScript</h1>
-        <div class="chatbox" id="chatbox"></div>
-        <div class="input-container">
-            <input type="text" id="userInput" placeholder="Type a message...">
-            <button id="sendButton" onclick="sendMessage()">Send</button>
-        </div>
+      <h1>SmileScript</h1>
+      <div class="chatbox" id="chatbox"></div>
+      <div class="input-container">
+        <input type="text" id="userInput" placeholder="Type a message..." />
+        <button id="sendButton" onclick="sendMessage()">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <script>
-        function sendMessage() {
-            sendMessageLogic();
-        }
+      function sendMessage() {
+        sendMessageLogic();
+      }
 
-        document.getElementById("userInput").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                sendMessageLogic();
-            }
+      document
+        .getElementById("userInput")
+        .addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            sendMessageLogic();
+          }
         });
 
-        function sendMessageLogic() {
-            var userInput = document.getElementById("userInput").value;
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "/get?msg=" + userInput, true);
-            xhr.send();
+      function sendMessageLogic() {
+        var userInput = document.getElementById("userInput").value;
+        if (userInput.trim() === "") return;
 
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var response = xhr.responseText;
-                    var chatbox = document.getElementById("chatbox");
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/get?msg=" + encodeURIComponent(userInput), true);
+        xhr.send();
 
-                    // Add user message
-                    var userPara = document.createElement("p");
-                    userPara.className = "message user-message";
-                    userPara.innerText = "You: " + userInput;
-                    chatbox.appendChild(userPara);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            var response = xhr.responseText;
+            var chatbox = document.getElementById("chatbox");
 
-                    // Add bot message
-                    var botPara = document.createElement("p");
-                    botPara.className = "message bot-message";
-                    botPara.innerText = response;
-                    chatbox.appendChild(botPara);
+            // Create user message container
+            var userMessageContainer = document.createElement("div");
+            userMessageContainer.className = "message-container";
+            chatbox.appendChild(userMessageContainer);
 
-                    // Scroll to bottom
-                    chatbox.scrollTop = chatbox.scrollHeight;
+            // Add user info
+            var userInfo = document.createElement("div");
+            userInfo.className = "user-info";
+            userInfo.innerText = "You";
+            userMessageContainer.appendChild(userInfo);
 
-                    // Clear input
-                    document.getElementById("userInput").value = "";
-                }
-            }
+            // Add user message
+            var userPara = document.createElement("div");
+            userPara.className = "message user-message";
+            userPara.innerText = userInput;
+            userMessageContainer.appendChild(userPara);
+
+            // Create bot message container
+            var botMessageContainer = document.createElement("div");
+            botMessageContainer.className = "message-container";
+            chatbox.appendChild(botMessageContainer);
+
+            // Add bot info
+            var botInfo = document.createElement("div");
+            botInfo.className = "bot-info";
+            botInfo.innerText = "SmileScript";
+            botMessageContainer.appendChild(botInfo);
+
+            // Add bot message
+            var botPara = document.createElement("div");
+            botPara.className = "message bot-message";
+            botPara.innerText = response;
+            botMessageContainer.appendChild(botPara);
+
+            // Scroll to bottom with animation
+            smoothScrollToBottom(chatbox);
+
+            // Clear input
+            document.getElementById("userInput").value = "";
+          }
+        };
+      }
+
+      function smoothScrollToBottom(element) {
+        const start = element.scrollTop;
+        const end = element.scrollHeight - element.clientHeight;
+        const duration = 300;
+        let startTime = null;
+
+        function animation(currentTime) {
+          if (startTime === null) startTime = currentTime;
+          const timeElapsed = currentTime - startTime;
+          const progress = Math.min(timeElapsed / duration, 1);
+          element.scrollTop = start + (end - start) * easeInOutQuad(progress);
+
+          if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+          }
         }
+
+        function easeInOutQuad(t) {
+          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+        }
+
+        requestAnimationFrame(animation);
+      }
+
+      // Add welcome message on load
+      window.onload = function () {
+        setTimeout(function () {
+          var chatbox = document.getElementById("chatbox");
+
+          // Create bot message container
+          var botMessageContainer = document.createElement("div");
+          botMessageContainer.className = "message-container";
+          chatbox.appendChild(botMessageContainer);
+
+          // Add bot info
+          var botInfo = document.createElement("div");
+          botInfo.className = "bot-info";
+          botInfo.innerText = "SmileScript";
+          botMessageContainer.appendChild(botInfo);
+
+          // Add bot message
+          var botPara = document.createElement("div");
+          botPara.className = "message bot-message";
+          botPara.innerText = "Hello! How can I help you today? 😊";
+          botMessageContainer.appendChild(botPara);
+        }, 500);
+      };
     </script>
-</body>
+  </body>
 </html>

@@ -55,13 +55,13 @@ if __name__ == '__main__':
 
 
     # Hyperparameters
-    batch_size = 8 #number of samples per batch duriong trianing
+    batch_size = 32 #number of samples per batch duriong trianing
     hidden_size = 16 #numbe rof units in hidden layer
     
     output_size = len(tags)  #number of outputs, detrmined by tags
     input_size = len(X_train[0])        #size of input, determined by bag of words
     learning_rate = 0.001               #learning rate for optimization algorithm
-    num_epochs = 1000                   #number of times the entire dataset is passed forward and backward through the neural network
+    num_epochs = 2000                  #number of times the entire dataset is passed forward and backward through the neural network
 #epochs= one complete pass through the entire training dataset, 
     dataset = ChatDataset(X_train, Y_train)   #load dataset
     train_loader = DataLoader(dataset=dataset, batch_size=batch_size, shuffle=True)  

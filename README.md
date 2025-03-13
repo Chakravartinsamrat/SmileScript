@@ -34,3 +34,6 @@ Install Pytorch
 >
 Install Flask Python
 >pip install flask 
+
+
+This is the project where i started learning pytorch, So Ignore the comments

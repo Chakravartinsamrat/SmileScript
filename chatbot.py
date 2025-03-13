@@ -48,7 +48,7 @@ def get_response(msg):
     probs = torch.softmax(output, dim=1)
     prob = probs[0][predicted.item()]
 
-    if prob.item() > 0.05:
+    if prob.item() > 0.15:
         for intent in intents["intents"]:
             if tag == intent["tag"]:
                 return f"{bot_name}: {random.choice(intent['responses'])}"
