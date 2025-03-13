@@ -5,7 +5,7 @@ import torch
 from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='static')
 
 device = torch.device('cpu')
 
@@ -61,6 +61,10 @@ def home():
 def get_bot_response():
     user_msg = request.args.get('msg')
     return get_response(user_msg)
+
+@app.route("/debug")
+def debug():
+    return "Debug route is working"
 
 if __name__ == "__main__":
     app.run(debug=True)
