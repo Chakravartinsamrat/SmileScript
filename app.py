@@ -2,13 +2,14 @@ from flask import Flask, render_template, request
 import random
 import json
 import torch
+import nltk
 from model import NeuralNet
 from nltk_utils import bag_of_words, tokenize
 
 app = Flask(__name__,static_folder='static')
 
 device = torch.device('cpu')
-
+nltk.download('punkt')
 # Load intents file
 with open('intents.json', 'r') as f:
     intents = json.load(f)
