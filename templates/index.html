@@ -1,338 +1,664 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SmileScript</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-        
-        :root {
-            --primary-color: #6c63ff;
-            --primary-light: #e6e4ff;
-            --secondary-color: #63c7ff;
-            --text-dark: #2d3748;
-            --text-light: #718096;
-            --white: #ffffff;
-            --light-bg: #f8fafc;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        --primary-color: #6c63ff;
+        --primary-light: #e6e4ff;
+        --secondary-color: #63c7ff;
+        --text-dark: #2d3748;
+        --text-light: #718096;
+        --white: #ffffff;
+        --light-bg: #f8fafc;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Quicksand", sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f0f7ff;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpath fill='%23f4f9ff' d='M486 705.8c-109.3-21.8-223.4-32.2-335.3-19.4C99.5 692.1 49 703 0 719.8V800h843.8c-115.9-33.2-230.8-68.1-347.6-92.2C492.8 707.1 489.4 706.5 486 705.8z'/%3E%3Cpath fill='%23f8fbff' d='M1600 0H0v719.8c49-16.8 99.5-27.8 150.7-33.5c111.9-12.7 226-2.4 335.3 19.4c3.4 0.7 6.8 1.4 10.2 2c116.8 24 231.7 59 347.6 92.2H1600V0z'/%3E%3Cpath fill='%23fcfdff' d='M478.4 581c3.2 0.8 6.4 1.7 9.5 2.5c196.2 52.5 388.7 133.5 593.5 176.6c174.2 36.6 349.5 29.2 518.6-10.2V0H0v574.9c52.3-17.6 106.5-27.7 161.1-30.9C268.4 537.4 375.7 554.2 478.4 581z'/%3E%3Cpath fill='%23ffffff' d='M0 0v429.4c55.6-18.4 113.5-27.3 171.4-27.7c102.8-0.8 203.2 22.7 299.3 54.5c3 1 5.9 2 8.9 3c183.6 62 365.7 146.1 562.4 192.1c186.7 43.7 376.3 34.4 557.9-12.6V0H0z'/%3E%3C/g%3E%3C/svg%3E");
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+      }
+
+      .container {
+        max-width: 500px;
+        width: 90%;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+      }
+
+      h1 {
+        text-align: center;
+        color: var(--primary-color);
+        margin-bottom: 25px;
+        font-weight: 700;
+        font-size: 2.5rem;
+        text-shadow: 0 2px 4px rgba(108, 99, 255, 0.2);
+      }
+
+      .chatbox {
+        height: 350px;
+        overflow-y: auto;
+        padding: 15px;
+        border-radius: 16px;
+        background-color: var(--light-bg);
+        margin-bottom: 20px;
+        border: 1px solid rgba(108, 99, 255, 0.2);
+        scrollbar-width: thin;
+        scrollbar-color: var(--primary-light) transparent;
+      }
+
+      .chatbox::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .chatbox::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      .chatbox::-webkit-scrollbar-thumb {
+        background-color: var(--primary-light);
+        border-radius: 10px;
+      }
+
+      .message {
+        margin: 12px 0;
+        padding: 12px 16px;
+        border-radius: 18px;
+        line-height: 1.5;
+        font-size: 0.95rem;
+        position: relative;
+        max-width: 80%;
+        word-wrap: break-word;
+      }
+
+      .user-message {
+        background-color: var(--primary-color);
+        color: var(--white);
+        align-self: flex-end;
+        margin-left: auto;
+        border-bottom-right-radius: 4px;
+      }
+
+      .bot-message {
+        background-color: var(--light-bg);
+        color: var(--text-dark);
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+        border: 1px solid rgba(108, 99, 255, 0.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .input-container {
+        display: flex;
+        margin-top: 20px;
+        position: relative;
+      }
+
+      #userInput {
+        flex: 1;
+        padding: 15px 20px;
+        border: 2px solid transparent;
+        background-color: var(--light-bg);
+        border-radius: 50px;
+        font-family: "Quicksand", sans-serif;
+        font-size: 0.95rem;
+        color: var(--text-dark);
+        outline: none;
+        transition: all 0.3s ease;
+      }
+
+      #userInput:focus {
+        border-color: var(--primary-light);
+        box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.1);
+      }
+
+      #userInput::placeholder {
+        color: var(--text-light);
+      }
+
+      #sendButton {
+        padding: 15px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        color: var(--white);
+        border: none;
+        cursor: pointer;
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 8px rgba(108, 99, 255, 0.2);
+      }
+
+      #sendButton:hover {
+        transform: translateY(-2px);
+        background-color: #5a52e3;
+        box-shadow: 0 6px 12px rgba(108, 99, 255, 0.3);
+      }
+
+      #sendButton:active {
+        transform: translateY(0);
+      }
+
+      .message-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .user-info,
+      .bot-info {
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+        color: var(--text-light);
+      }
+
+      .user-info {
+        text-align: right;
+        margin-right: 10px;
+      }
+
+      .bot-info {
+        margin-left: 10px;
+      }
+
+      /* Preloader Styles */
+      #preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #AD8FFF;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.5s ease;
+      }
+
+      #preloader.fade-out {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #main-content {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #main-content.fade-in {
+        opacity: 1;
+      }
+
+      .loader {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 600px;
+        gap: 2%;
+      }
+
+      .mr-freeze {
+        position: relative;
+        width: 6vw;
+        max-width: 30px;
+        min-width: 15px;
+        max-height: 80vh;
+        aspect-ratio: 1 / 8;
+        animation: infinite syrup-displacement 2000ms ease;
+        animation-delay: var(--delay);  
+        transform-origin: bottom center;  
+        z-index: 3;
+        border: 1px solid rgba(255,255,255,.5);
+        border-width: 0 2px;
+        background: 
+          no-repeat bottom 1rem center / 100% 30%
+          linear-gradient(
+            hsla(var(--hue), 100%, 50%, 50%),
+            hsla(var(--hue), 100%, 60%, 50%)      
+          );  
+      }
+
+      .mr-freeze:nth-child(1) {
+        --hue: 360;
+        --hex: #F46A6C;
+        --delay: calc(80ms * 1);
+      }
+
+      .mr-freeze:nth-child(2) {
+        --hue: 38;
+        --hex: #FBAD21;
+        --delay: calc(80ms * 2);
+      }
+
+      .mr-freeze:nth-child(3) {
+        --hue: 48;
+        --hex: #F7D445;
+        --delay: calc(80ms * 3);
+      }
+
+      .mr-freeze:nth-child(4) {
+        --hue: 84;
+        --hex: #9BCC50;
+        --delay: calc(80ms * 4);
+      }
+
+      .mr-freeze:nth-child(5) {
+        --hue: 194;
+        --hex: #3AB9DE;
+        --delay: calc(80ms * 5);
+      }
+
+      .mr-freeze:nth-child(6) {
+        --hue: 290;
+        --hex: #AC51C0;
+        --delay: calc(80ms * 6);
+      }
+
+      .mr-freeze:before {
+        --inset: 10%;
+        content: '';
+        display: block;
+        position: absolute;
+        top: var(--inset);
+        right: var(--inset);
+        bottom: 1.5rem;
+        left: var(--inset);
+        border: 2px solid var(--hex);
+        background: var(--hex);
+        border-radius: 20% / 2%; 
+        pointer-events: none;
+        opacity: .9;
+        animation: infinite pop-da-pop 2000ms ease;
+        animation-delay: var(--delay);
+        box-shadow:
+          inset .25rem .25rem .5rem hsla(40, 100%, 50%, 0.3), 
+          inset -.25rem -.25rem .5rem hsla(200, 100%, 50%, 0.15);
+      }
+
+      .mr-freeze:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: 
+          no-repeat top center / 100% calc(100% - 1rem) 
+          linear-gradient( 
+            to right,
+            rgba(255,255,255,.3),       
+            rgba(255,255,255,.1) 30%, 
+            rgba(255,255,255,.4) 30%,
+            rgba(255,255,255,.0)       
+          ),    
+          no-repeat bottom 1rem center / 100% 2px 
+          linear-gradient( 
+            to bottom,
+            rgba(255,255,255,.5), 
+            rgba(255,255,255,.5)
+          ),     
+          no-repeat bottom center / 100% 1rem 
+          linear-gradient( 
+            to bottom,
+            rgba(255,255,255,.6), 
+            rgba(255,255,255,.4)
+          );    
+        clip-path:
+          polygon(
+            0 0,
+            100% 0,
+            100% 100%,      
+            87.5% 99%,
+            75.0% 100%,
+            62.5% 99%,
+            50.0% 100%,
+            37.5% 99%,
+            25.0% 100%,
+            12.5% 99%,
+            0 100%
+          );
+      }
+
+      @keyframes pop-da-pop {
+        0%, 5%, 95%, 100% {
+          transform: translateY(0);
         }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        40%, 60% {
+          transform: translateY(-50%);
+        }  
+        50% {
+          transform: translateY(-48%);
+        } 
+      }
+
+      @keyframes syrup-displacement {
+        0%, 100% {
+          background-size: 100% 30%;
+        }   
+        15%, 85% {
+          background-size: 100% 32%;
+        }    
+        30%, 70% {
+          background-size: 100% 18%;
         }
-        
-        body {
-            font-family: 'Quicksand', sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f0f7ff;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpath fill='%23f4f9ff' d='M486 705.8c-109.3-21.8-223.4-32.2-335.3-19.4C99.5 692.1 49 703 0 719.8V800h843.8c-115.9-33.2-230.8-68.1-347.6-92.2C492.8 707.1 489.4 706.5 486 705.8z'/%3E%3Cpath fill='%23f8fbff' d='M1600 0H0v719.8c49-16.8 99.5-27.8 150.7-33.5c111.9-12.7 226-2.4 335.3 19.4c3.4 0.7 6.8 1.4 10.2 2c116.8 24 231.7 59 347.6 92.2H1600V0z'/%3E%3Cpath fill='%23fcfdff' d='M478.4 581c3.2 0.8 6.4 1.7 9.5 2.5c196.2 52.5 388.7 133.5 593.5 176.6c174.2 36.6 349.5 29.2 518.6-10.2V0H0v574.9c52.3-17.6 106.5-27.7 161.1-30.9C268.4 537.4 375.7 554.2 478.4 581z'/%3E%3Cpath fill='%23ffffff' d='M0 0v429.4c55.6-18.4 113.5-27.3 171.4-27.7c102.8-0.8 203.2 22.7 299.3 54.5c3 1 5.9 2 8.9 3c183.6 62 365.7 146.1 562.4 192.1c186.7 43.7 376.3 34.4 557.9-12.6V0H0z'/%3E%3C/g%3E%3C/svg%3E");
-            background-attachment: fixed;
-            background-position: center;
-            background-size: cover;
-        }
-        
+        50% {
+          background-size: 100% 16%;
+        }  
+      }
+
+      /* Responsive styles */
+      @media (max-width: 768px) {
         .container {
-            max-width: 500px;
-            width: 100%;
-            margin: 40px auto;
-            padding: 30px;
-            background-color: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
+          width: 85%;
+          padding: 20px;
+          margin: 20px auto;
         }
-        
+
         h1 {
-            text-align: center;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            font-weight: 700;
-            font-size: 2.5rem;
-            text-shadow: 0 2px 4px rgba(108, 99, 255, 0.2);
+          font-size: 2rem;
         }
-        
+
         .chatbox {
-            height: 350px;
-            overflow-y: auto;
-            padding: 15px;
-            border-radius: 16px;
-            background-color: var(--light-bg);
-            margin-bottom: 20px;
-            border: 1px solid rgba(108, 99, 255, 0.2);
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-light) transparent;
+          height: 300px;
         }
-        
-        .chatbox::-webkit-scrollbar {
-            width: 6px;
-        }
-        
-        .chatbox::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        
-        .chatbox::-webkit-scrollbar-thumb {
-            background-color: var(--primary-light);
-            border-radius: 10px;
-        }
-        
+
         .message {
-            margin: 12px 0;
-            padding: 12px 16px;
-            border-radius: 18px;
-            line-height: 1.5;
-            font-size: 0.95rem;
-            position: relative;
-            max-width: 80%;
-            word-wrap: break-word;
-        }
-        
-        .user-message {
-            background-color: var(--primary-color);
-            color: var(--white);
-            align-self: flex-end;
-            margin-left: auto;
-            border-bottom-right-radius: 4px;
-        }
-        
-        .bot-message {
-            background-color: var(--light-bg);
-            color: var(--text-dark);
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-            border: 1px solid rgba(108, 99, 255, 0.1);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        }
-        
-        .input-container {
-            display: flex;
-            margin-top: 20px;
-            position: relative;
+          max-width: 85%;
+          padding: 10px 14px;
+          font-size: 0.9rem;
         }
         
         #userInput {
-            flex: 1;
-            padding: 15px 20px;
-            border: 2px solid transparent;
-            background-color: var(--light-bg);
-            border-radius: 50px;
-            font-family: 'Quicksand', sans-serif;
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        
-        #userInput:focus {
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.1);
-        }
-        
-        #userInput::placeholder {
-            color: var(--text-light);
+          padding: 12px 16px;
         }
         
         #sendButton {
-            padding: 15px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: var(--white);
-            border: none;
-            cursor: pointer;
-            margin-left: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 8px rgba(108, 99, 255, 0.2);
+          width: 45px;
+          height: 45px;
         }
-        
-        #sendButton:hover {
-            transform: translateY(-2px);
-            background-color: #5a52e3;
-            box-shadow: 0 6px 12px rgba(108, 99, 255, 0.3);
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          width: 90%;
+          padding: 15px;
+          margin: 15px auto;
         }
-        
-        #sendButton:active {
-            transform: translateY(0);
+
+        h1 {
+          font-size: 1.8rem;
+          margin-bottom: 15px;
         }
-        
-        .message-container {
-            display: flex;
-            flex-direction: column;
+
+        .chatbox {
+          height: 280px;
+          padding: 10px;
         }
-        
+
+        .message {
+          max-width: 90%;
+          padding: 8px 12px;
+          font-size: 0.85rem;
+          margin: 8px 0;
+        }
+
         .user-info, .bot-info {
-            font-size: 0.8rem;
-            margin-bottom: 4px;
-            color: var(--text-light);
+          font-size: 0.7rem;
         }
         
-        .user-info {
-            text-align: right;
-            margin-right: 10px;
+        #userInput {
+          padding: 10px 15px;
+          font-size: 0.85rem;
         }
         
-        .bot-info {
-            margin-left: 10px;
+        #sendButton {
+          width: 40px;
+          height: 40px;
+          padding: 10px;
+        }
+
+        .loader {
+          max-width: 300px;
         }
         
-        @media (max-width: 600px) {
-            .container {
-                margin: 20px;
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .message {
-                max-width: 90%;
-            }
+        .mr-freeze {
+          min-width: 10px; 
         }
+      }
+
+      /* Fix for very small screens */
+      @media (max-width: 320px) {
+        h1 {
+          font-size: 1.5rem;
+        }
+        
+        .container {
+          padding: 12px;
+        }
+        
+        .chatbox {
+          height: 250px;
+        }
+        
+        .message {
+          padding: 6px 10px;
+          font-size: 0.8rem;
+        }
+        
+        #userInput {
+          font-size: 0.8rem;
+        }
+      }
     </style>
-</head>
-<body>
-    <div class="container">
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div class="loader">
+        <div class="mr-freeze"></div>
+        <div class="mr-freeze"></div>
+        <div class="mr-freeze"></div>
+        <div class="mr-freeze"></div>
+        <div class="mr-freeze"></div>
+        <div class="mr-freeze"></div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+      <div class="container">
         <h1>SmileScript</h1>
         <div class="chatbox" id="chatbox"></div>
         <div class="input-container">
-            <input type="text" id="userInput" placeholder="Type a message...">
-            <button id="sendButton" onclick="sendMessage()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                </svg>
-            </button>
+          <input type="text" id="userInput" placeholder="Type a message..." />
+          <button id="sendButton" onclick="sendMessage()">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
         </div>
+      </div>
     </div>
 
     <script>
-        function sendMessage() {
-            sendMessageLogic();
-        }
+      // Preloader functionality
+      document.addEventListener("DOMContentLoaded", function() {
+        const preloader = document.getElementById("preloader");
+        const mainContent = document.getElementById("main-content");
+        
+        // Hide preloader after 3 seconds
+        setTimeout(function() {
+          preloader.classList.add("fade-out");
+          mainContent.classList.add("fade-in");
+          
+          // Remove preloader from DOM after animation completes
+          setTimeout(function() {
+            preloader.style.display = "none";
+          }, 500);
+        }, 3000);
+      });
 
-        document.getElementById("userInput").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                sendMessageLogic();
-            }
+      function sendMessage() {
+        sendMessageLogic();
+      }
+
+      document
+        .getElementById("userInput")
+        .addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            sendMessageLogic();
+          }
         });
 
-        function sendMessageLogic() {
-            var userInput = document.getElementById("userInput").value;
-            if (userInput.trim() === '') return;
-            
-            var xhr = new XMLHttpRequest();
-            xhr.open("GET", "/get?msg=" + encodeURIComponent(userInput), true);
-            xhr.send();
+      function sendMessageLogic() {
+        var userInput = document.getElementById("userInput").value;
+        if (userInput.trim() === "") return;
 
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var response = xhr.responseText;
-                    var chatbox = document.getElementById("chatbox");
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/get?msg=" + encodeURIComponent(userInput), true);
+        xhr.send();
 
-                    // Create user message container
-                    var userMessageContainer = document.createElement("div");
-                    userMessageContainer.className = "message-container";
-                    chatbox.appendChild(userMessageContainer);
-                    
-                    // Add user info
-                    var userInfo = document.createElement("div");
-                    userInfo.className = "user-info";
-                    userInfo.innerText = "You";
-                    userMessageContainer.appendChild(userInfo);
-                    
-                    // Add user message
-                    var userPara = document.createElement("div");
-                    userPara.className = "message user-message";
-                    userPara.innerText = userInput;
-                    userMessageContainer.appendChild(userPara);
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            var response = xhr.responseText;
+            var chatbox = document.getElementById("chatbox");
 
-                    // Create bot message container
-                    var botMessageContainer = document.createElement("div");
-                    botMessageContainer.className = "message-container";
-                    chatbox.appendChild(botMessageContainer);
-                    
-                    // Add bot info
-                    var botInfo = document.createElement("div");
-                    botInfo.className = "bot-info";
-                    botInfo.innerText = "SmileScript";
-                    botMessageContainer.appendChild(botInfo);
-                    
-                    // Add bot message
-                    var botPara = document.createElement("div");
-                    botPara.className = "message bot-message";
-                    botPara.innerText = response;
-                    botMessageContainer.appendChild(botPara);
+            // Create user message container
+            var userMessageContainer = document.createElement("div");
+            userMessageContainer.className = "message-container";
+            chatbox.appendChild(userMessageContainer);
 
-                    // Scroll to bottom with animation
-                    smoothScrollToBottom(chatbox);
+            // Add user info
+            var userInfo = document.createElement("div");
+            userInfo.className = "user-info";
+            userInfo.innerText = "You";
+            userMessageContainer.appendChild(userInfo);
 
-                    // Clear input
-                    document.getElementById("userInput").value = "";
-                }
-            }
-        }
-        
-        function smoothScrollToBottom(element) {
-            const start = element.scrollTop;
-            const end = element.scrollHeight - element.clientHeight;
-            const duration = 300;
-            let startTime = null;
-            
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const progress = Math.min(timeElapsed / duration, 1);
-                element.scrollTop = start + (end - start) * easeInOutQuad(progress);
-                
-                if (timeElapsed < duration) {
-                    requestAnimationFrame(animation);
-                }
-            }
-            
-            function easeInOutQuad(t) {
-                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-            }
-            
+            // Add user message
+            var userPara = document.createElement("div");
+            userPara.className = "message user-message";
+            userPara.innerText = userInput;
+            userMessageContainer.appendChild(userPara);
+
+            // Create bot message container
+            var botMessageContainer = document.createElement("div");
+            botMessageContainer.className = "message-container";
+            chatbox.appendChild(botMessageContainer);
+
+            // Add bot info
+            var botInfo = document.createElement("div");
+            botInfo.className = "bot-info";
+            botInfo.innerText = "SmileScript";
+            botMessageContainer.appendChild(botInfo);
+
+            // Add bot message
+            var botPara = document.createElement("div");
+            botPara.className = "message bot-message";
+            botPara.innerText = response;
+            botMessageContainer.appendChild(botPara);
+
+            // Scroll to bottom with animation
+            smoothScrollToBottom(chatbox);
+
+            // Clear input
+            document.getElementById("userInput").value = "";
+          }
+        };
+      }
+
+      function smoothScrollToBottom(element) {
+        const start = element.scrollTop;
+        const end = element.scrollHeight - element.clientHeight;
+        const duration = 300;
+        let startTime = null;
+
+        function animation(currentTime) {
+          if (startTime === null) startTime = currentTime;
+          const timeElapsed = currentTime - startTime;
+          const progress = Math.min(timeElapsed / duration, 1);
+          element.scrollTop = start + (end - start) * easeInOutQuad(progress);
+
+          if (timeElapsed < duration) {
             requestAnimationFrame(animation);
+          }
         }
-        
-        // Add welcome message on load
-        window.onload = function() {
-            setTimeout(function() {
-                var chatbox = document.getElementById("chatbox");
-                
-                // Create bot message container
-                var botMessageContainer = document.createElement("div");
-                botMessageContainer.className = "message-container";
-                chatbox.appendChild(botMessageContainer);
-                
-                // Add bot info
-                var botInfo = document.createElement("div");
-                botInfo.className = "bot-info";
-                botInfo.innerText = "SmileScript";
-                botMessageContainer.appendChild(botInfo);
-                
-                // Add bot message
-                var botPara = document.createElement("div");
-                botPara.className = "message bot-message";
-                botPara.innerText = "Hello! How can I help you today? 😊";
-                botMessageContainer.appendChild(botPara);
-            }, 500);
+
+        function easeInOutQuad(t) {
+          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
         }
+
+        requestAnimationFrame(animation);
+      }
+
+      // Add welcome message on load
+      window.onload = function () {
+        setTimeout(function () {
+          var chatbox = document.getElementById("chatbox");
+
+          // Create bot message container
+          var botMessageContainer = document.createElement("div");
+          botMessageContainer.className = "message-container";
+          chatbox.appendChild(botMessageContainer);
+
+          // Add bot info
+          var botInfo = document.createElement("div");
+          botInfo.className = "bot-info";
+          botInfo.innerText = "SmileScript";
+          botMessageContainer.appendChild(botInfo);
+
+          // Add bot message
+          var botPara = document.createElement("div");
+          botPara.className = "message bot-message";
+          botPara.innerText = "Hello! How can I help you today? 😊";
+          botMessageContainer.appendChild(botPara);
+        }, 500);
+      };
     </script>
-</body>
+  </body>
 </html>

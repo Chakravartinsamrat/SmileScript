@@ -1,7 +1,8 @@
 import nltk
 import numpy as np
-#nltk.download('punkt')
-#nltk.donwload('wordnet')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
 

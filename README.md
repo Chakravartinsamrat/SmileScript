@@ -39,5 +39,7 @@ Install Flask Python
 This is the project where i started learning pytorch, So Ignore the comments
 
 
-Training Accuracy
+##Training Accuracy
+
+
 ![image](https://github.com/user-attachments/assets/846891b8-7913-4f41-8dd3-ef98c43f2daa)

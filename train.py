@@ -109,6 +109,26 @@ if __name__ == '__main__':
     print(f'Final Loss: {loss.item():.4f}')
 
 
+def evaluate_accuracy(model, X_train, Y_train, device):
+    
+    X = torch.FloatTensor(X_train).to(device)
+    Y = torch.LongTensor(Y_train).to(device)
+    
+    
+    model.eval()
+    
+    with torch.no_grad():
+        outputs = model(X)
+        _, predicted = torch.max(outputs.data, 1)
+        total = Y.size(0)
+        correct = (predicted == Y).sum().item()
+        
+    accuracy = 100 * correct / total
+    print(f'Training Accuracy: {accuracy:.2f}%')
+    return accuracy
+accuracy = evaluate_accuracy(model, X_train, Y_train, device)
+print(accuracy)
+
 #Now the trainning data is saved to Data.pth, IT IS ALSO CALLED A DICTIONARY
 data={
     "model_state":model.state_dict(),
