@@ -41,3 +41,8 @@ This is the project where i started learning pytorch, So Ignore the comments
 
 Training Accuracy
 ![image](https://github.com/user-attachments/assets/846891b8-7913-4f41-8dd3-ef98c43f2daa)
+
+
+## Working
+![image](https://github.com/user-attachments/assets/1ed4cee1-73dd-4fe7-9b68-be492a806ff0)
+
